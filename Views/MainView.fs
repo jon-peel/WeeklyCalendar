@@ -2,6 +2,7 @@
 module WeeklyCalendar.Views.MainView
 
 open Giraffe.ViewEngine
+open WeeklyCalendar.Views.Components
 open WeeklyCalendar.Views.Components.DateTimePanel
 open WeeklyCalendar.Views.Components.DailyAgenda
 
@@ -13,6 +14,7 @@ let mainView config =
                    _href "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" ]
             link [ _rel "stylesheet"
                    _href "./css/app.css" ]
+            script [ _src "https://unpkg.com/htmx.org@1.9.6" ] []
         ]
         body [] [
             div [ _class "container-fluid p-0 main-container" ] [

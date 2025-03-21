@@ -1,4 +1,4 @@
-module PhotoFrame 
+module WeeklyCalendar.Views.Components.PhotoFrame 
 open Giraffe.ViewEngine
 open System.IO
 
@@ -17,10 +17,6 @@ let getPhotos() =
 
 let getRandomPhoto() =
     let photos = getPhotos()
-    printfn "Found %d photos" photos.Length
-    for photo in photos do
-        printfn "Photo: %s" photo
-
     if photos.Length > 0 then
         let random = System.Random()
         let index = random.Next(photos.Length)
@@ -34,7 +30,7 @@ let photoFrame () =
         | Some photo -> sprintf "/photos/%s" photo
         | None -> "/images/no-photo.png"  // Fallback image
     
-    div [ _class "card h-100" ] [
+    div [ _id "photo-frame" ; _class "card h-100" ] [
         div [ _class "card-body d-flex align-items-center justify-content-center" ] [
             img [
                 _src photoUrl

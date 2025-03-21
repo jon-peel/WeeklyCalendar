@@ -51,3 +51,10 @@ setInterval(processUpdates, 1000);
 const now = new Date();
 updateTime(now);
 scrollToCurrentHourImmediate(now); // Initial scroll on page load
+
+setInterval(() => {
+    console.log('Reloading');
+    debugger;
+    htmx.ajax('GET', '/api/photo', '#photo-frame')
+    console.log('Realoading done');
+}, 5000);

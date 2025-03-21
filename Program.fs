@@ -14,6 +14,9 @@ let errorHandler (ex : Exception) (logger : Microsoft.Extensions.Logging.ILogger
 let webApp config =
     choose [
         route "/" >=> mainHandler config
+        route "/api/photo" >=> 
+            fun next ctx -> 
+                htmlView (WeeklyCalendar.Views.Components.PhotoFrame.photoFrame ()) next ctx
     ]
 
 
