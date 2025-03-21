@@ -1,0 +1,48 @@
+agenda:
+  - day: Monday
+    name: Cleaning
+    start: 15:30
+    end: 17:30
+    color: red
+
+  - day: Tuesday
+    name: Cleaning
+    start: 15:30
+    end: 17:30
+    color: red
+
+  - day: Wednesday
+    name: Cleaning
+    start: 15:30
+    end: 17:30
+    color: red
+
+  - day: Thursday
+    name: Classes
+    start: 15:30
+    end: 17:30
+    color: red
+
+  - day: Thursday
+    name: Classes
+    start: 18:00
+    end: 20:00
+    color: red
+
+  - day: Friday
+    name: Cleaning
+    start: 15:30
+    end: 17:30
+    color: red
+
+  - day: Saturday
+    name: Cleaning
+    start: 15:30
+    end: 17:30
+    color: red
+
+  - day: Sunday
+    name: Cleaning
+    start: 15:30
+    end: 17:30
+    color: red

@@ -1,0 +1,86 @@
+body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.daily-agenda {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-left: 1px solid #ddd;
+    padding-left: 10px;
+    overflow-y: auto;
+}
+
+.time-grid {
+    position: relative;
+    width: 100%;
+    height: calc((21 - 9 + 1) * 60px);  /* (endAt - startAt + 1) * height-per-hour */
+}
+
+.time-slot {
+    position: absolute;
+    height: 60px;  /* Fixed height per hour */
+    font-size: 0.8em;
+    color: #666;
+    border-top: 1px solid #eee;
+    width: 100%;
+    padding-left: 5px;
+}
+
+.events-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 50px;
+    height: calc((21 - 9 + 1) * 60px);  /* Match time-grid height */
+}
+
+.event-block {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 1px 5px;
+    padding: 4px;
+    border-radius: 4px;
+    opacity: 0.9;
+}
+
+.event-name {
+    color: white;
+    font-size: 0.9em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.main-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    max-width: 100vw;
+}
+
+.content-row {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.agenda-container {
+    height: calc(100vh - 60px); /* Adjust based on your header height */
+    overflow-y: auto;
+    padding-bottom: 1rem;
+}
+
+.current-time-indicator {
+    position: absolute;
+    left: -3em;  /* Extended left to cross over the time labels */
+    right: 0;
+    height: 2px;
+    background-color: #ffd700;  /* Dark yellow (gold) color */
+    z-index: 100;
+}

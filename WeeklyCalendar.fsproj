@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup><Compile Include="Domain/Event.fs" />
+    <Compile Include="Views/Components/TimeDisplay.fs" />
+    <Compile Include="Views/Components/DateTimePanel.fs" />
+    <Compile Include="Views/Components/DailyAgenda.fs" />
+    <Compile Include="Views/MainView.fs" />
+    <Compile Include="Handlers/MainHandler.fs" />
+    <Compile Include="ConfigReader.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FSharp.Configuration" Version="2.0.0" />
+    <PackageReference Include="Giraffe" Version="7.0.2" />
+    <PackageReference Include="Giraffe.ViewEngine" Version="1.4.0" />
+    
+  </ItemGroup>
+
+</Project>
