@@ -23,7 +23,7 @@ let mainView config =
                 div [ _class "row m-0 content-row" ] [
                     div [ _class "col-9 p-2" ] [
                         // Photo slideshow will go here
-                        str "Photo Slideshow"
+                        PhotoFrame.photoFrame ()
                     ]
                     div [ _class "col-3 p-2 agenda-container" ] [
                         dailyAgenda config

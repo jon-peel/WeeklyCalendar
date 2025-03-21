@@ -20,8 +20,6 @@ let webApp config =
 [<EntryPoint>]
 let main args =
     let config = WeeklyCalendar.ConfigReader.read ()
-    Console.WriteLine config
-    
     let builder = WebApplication.CreateBuilder(args)
     builder.Services.AddGiraffe() |> ignore
 

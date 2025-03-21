@@ -105,3 +105,12 @@ body {
 .event-block-yellow {
     background-color: #ffa000;  /* Darker yellow */
 }
+
+.card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.card-body {
+    padding: 0;
+}
