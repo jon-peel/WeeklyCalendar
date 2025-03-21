@@ -1,48 +1,54 @@
 agenda:
   - day: Monday
-    name: Cleaning
-    start: 15:30
-    end: 17:30
+    name: Midday
+    start: 11:30
+    end: 12:30
     color: red
 
   - day: Tuesday
-    name: Cleaning
-    start: 15:30
-    end: 17:30
+    name: Midday
+    start: 11:30
+    end: 12:30
     color: red
 
   - day: Wednesday
-    name: Cleaning
-    start: 15:30
-    end: 17:30
+    name: Midday
+    start: 11:30
+    end: 12:30
     color: red
 
   - day: Thursday
-    name: Classes
-    start: 15:30
-    end: 17:30
-    color: red
-
-  - day: Thursday
-    name: Classes
-    start: 18:00
-    end: 20:00
+    name: Midday
+    start: 11:30
+    end: 12:30
     color: red
 
   - day: Friday
-    name: Cleaning
-    start: 15:30
-    end: 17:30
+    name: Nearly Weekend
+    start: 09:0
+    end: 11:30
+    color: darkgrey
+
+  - day: Friday
+    name: Midday
+    start: 11:30
+    end: 12:30
     color: red
 
+  - day: Friday
+    name: The Weekend Starts
+    start: 16:30
+    end: 17:00
+    color: blue
+
   - day: Saturday
-    name: Cleaning
-    start: 15:30
-    end: 17:30
+    name: Midday
+    start: 11:30
+    end: 12:30
     color: red
 
   - day: Sunday
-    name: Cleaning
-    start: 15:30
-    end: 17:30
+    name: Midday
+    start: 11:30
+    end: 12:30
     color: red

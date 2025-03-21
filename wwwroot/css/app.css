@@ -29,6 +29,10 @@ body {
     padding-left: 5px;
 }
 
+.time-slot.night {
+    background-color: rgba(52, 58, 64, 0.15);  /* Bootstrap dark gray with transparency */
+}
+
 .events-container {
     position: absolute;
     top: 0;
@@ -46,6 +50,7 @@ body {
     padding: 4px;
     border-radius: 4px;
     opacity: 0.9;
+    z-index: 100;
 }
 
 .event-name {
@@ -82,5 +87,21 @@ body {
     right: 0;
     height: 2px;
     background-color: #ffd700;  /* Dark yellow (gold) color */
-    z-index: 100;
+    z-index: 50;
+}
+
+.event-block-red {
+    background-color: #e63946;  /* Darker red */
+}
+
+.event-block-green {
+    background-color: #2d9741;  /* Darker green */
+}
+
+.event-block-blue {
+    background-color: #2196f3;  /* Darker blue */
+}
+
+.event-block-yellow {
+    background-color: #ffa000;  /* Darker yellow */
 }
