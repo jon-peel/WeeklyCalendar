@@ -52,6 +52,21 @@ const now = new Date();
 updateTime(now);
 scrollToCurrentHourImmediate(now); // Initial scroll on page load
 
+function handleVideo() {
+    const video = document.querySelector("video");    
+    video.addEventListener("play", function() {
+        video.classList.add("running");
+    });
+    video.addEventListener("timeupdate", function() {                             
+        video.currentTime > 6 ? video.currentTime = 4 : 0;
+    });
+    video.addEventListener("pause", function() {
+        video.classList.remove("running");
+    });
+    let _ = video.play();
+}
+handleVideo();
+
 setInterval(() => {
     console.log('Reloading');
     htmx.ajax('GET', '/api/photo', '#photo-frame')
