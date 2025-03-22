@@ -6,6 +6,7 @@
 
   <ItemGroup>
     
+    
     <Compile Include="Domain/Event.fs" />
     <Compile Include="Views/Components/TimeDisplay.fs" />
     <Compile Include="Views/Components/DateTimePanel.fs" />
@@ -15,6 +16,32 @@
     <Compile Include="Handlers/MainHandler.fs" />
     <Compile Include="ConfigReader.fs" />
     <Compile Include="Program.fs" />
+    <Content Include="Dockerfile" />
+    <Content Include="agenda.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="compose.yaml" />
+    <Content Include="docker-test-setup\config\agenda.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docker-test-setup\photos\5807334-3704028219.jpg" />
+    <Content Include="docker-test-setup\photos\bbpwv84muux31-3712334447.png" />
+    <Content Include="docker-run.sh" />
+    <Content Update="wwwroot\css\app.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\js\app.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\photos\Funny-Random-Wallpaper-1-2178579240.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\photos\nvSzsVZ-2238545220.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\photos\Random-random-5719759-1280-800-312430022.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
