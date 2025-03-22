@@ -14,6 +14,14 @@ let mainView config =
                    _href "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" ]
             link [ _rel "stylesheet"
                    _href "./css/app.css" ]
+            link [ _rel "shortcut icon"
+                   _type "image/x-icon"
+                   _href "/favicon.svg" ]
+            meta [_name "viewport"; _content "width=device-width, initial-scale=1"]
+            meta [_name "theme-color"; _content "#000000"]
+            link [_rel "manifest"; _href "/manifest.json"]
+            meta [_name "apple-mobile-web-app-capable"; _content "yes"]
+            meta [_name "apple-mobile-web-app-status-bar-style"; _content "black"]
             script [ _src "https://unpkg.com/htmx.org@1.9.6" ] []
         ]
         body [] [

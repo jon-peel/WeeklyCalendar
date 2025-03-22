@@ -57,3 +57,16 @@ setInterval(() => {
     htmx.ajax('GET', '/api/photo', '#photo-frame')
     console.log('Realoading done');
 }, 60000);
+
+// Register Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/js/service-worker.js')
+      .then(registration => {
+        console.log('ServiceWorker registration successful');
+      })
+      .catch(err => {
+        console.log('ServiceWorker registration failed: ', err);
+      });
+  });
+}
