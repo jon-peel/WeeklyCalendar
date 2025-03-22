@@ -114,3 +114,21 @@ body {
 .card-body {
     padding: 0;
 }
+
+.photo-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    background-color: #000;  /* Optional: adds black letterboxing */
+}
+
+.photo-display {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}

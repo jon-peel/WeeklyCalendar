@@ -34,3 +34,4 @@ packages/
 
 # Ignore generated files
 *.g.fs
+.fake

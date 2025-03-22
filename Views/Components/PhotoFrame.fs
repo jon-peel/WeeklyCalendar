@@ -3,16 +3,14 @@ open Giraffe.ViewEngine
 open System.IO
 
 let getPhotos() =
-    let photoDir = Path.Combine("wwwroot", "photos")
-    (Directory.GetParent photoDir).FullName |> printfn "Photo directory: %s"
+    let photoDir = Path.Combine("wwwroot", "photos")    
     if Directory.Exists(photoDir) then
         Directory.GetFiles(photoDir, "*.*")
         |> Array.filter (fun f -> 
             let ext = Path.GetExtension(f).ToLower()
             ext = ".jpg" || ext = ".jpeg" || ext = ".png" || ext = ".avif")
         |> Array.map (fun f -> Path.GetFileName(f))
-    else
-        printfn "Photo directory not found: %s" photoDir
+    else        
         Array.empty
 
 let getRandomPhoto() =
@@ -31,11 +29,11 @@ let photoFrame () =
         | None -> "/images/no-photo.png"  // Fallback image
     
     div [ _id "photo-frame" ; _class "card h-100" ] [
-        div [ _class "card-body d-flex align-items-center justify-content-center" ] [
+        div [ _class "photo-container" ] [
             img [
                 _src photoUrl
-                _class "img-fluid"
-                _style "max-height: 100%; object-fit: contain;"
+                _class "photo-display"
+                _alt "Photo"
             ]
         ]
     ]
