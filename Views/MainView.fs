@@ -22,16 +22,17 @@ let mainView config =
                 dateTimePanel ()
                 
                 // Section B & C: Main content
-                div [ _class "row m-0 content-row" ] [
+                div [ _class "row m-0 content-row" ] [                    
+                    StandByVideo.view ()
                     div [ _class "col-9 p-2" ] [
                         // Photo slideshow will go here
                         PhotoFrame.photoFrame ()
                     ]
                     div [ _class "col-3 p-2 agenda-container" ] [
                         dailyAgenda config
-                    ]
-                ]
-            ]
+                    ]                    
+                ]                
+            ]            
             script [_src "/js/app.js"] []
         ]
     ]
