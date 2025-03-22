@@ -47,11 +47,6 @@ function processUpdates() {
     scrollToCurrentHour(now);
 }
 
-setInterval(processUpdates, 1000);
-const now = new Date();
-updateTime(now);
-scrollToCurrentHourImmediate(now); // Initial scroll on page load
-
 function handleVideo() {
     const video = document.querySelector("video");    
     video.addEventListener("play", function() {
@@ -65,13 +60,25 @@ function handleVideo() {
     });
     let _ = video.play();
 }
-handleVideo();
+
+document.querySelector("button#activate").addEventListener("click", () => {
+    handleVideo();
+    document.querySelector("button#activate").remove();
+});
+
+setInterval(processUpdates, 1000);
+const now = new Date();
+updateTime(now);
+scrollToCurrentHourImmediate(now); // Initial scroll on page load
+
 
 setInterval(() => {
     console.log('Reloading');
     htmx.ajax('GET', '/api/photo', '#photo-frame')
     console.log('Realoading done');
 }, 60000);
+
+
 
 // Register Service Worker
 if ('serviceWorker' in navigator) {
