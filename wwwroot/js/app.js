@@ -56,4 +56,4 @@ setInterval(() => {
     console.log('Reloading');
     htmx.ajax('GET', '/api/photo', '#photo-frame')
     console.log('Realoading done');
-}, 5000);
+}, 60000);

@@ -23,10 +23,11 @@ let mainView config =
                 
                 // Section B & C: Main content
                 div [ _class "row m-0 content-row" ] [                    
-                    StandByVideo.view ()
                     div [ _class "col-9 p-2" ] [
-                        // Photo slideshow will go here
-                        PhotoFrame.photoFrame ()
+                        div [ _class "photo-container" ] [
+                            StandByVideo.view ()  // Behind
+                            PhotoFrame.photoFrame ()  // In front
+                        ]
                     ]
                     div [ _class "col-3 p-2 agenda-container" ] [
                         dailyAgenda config
