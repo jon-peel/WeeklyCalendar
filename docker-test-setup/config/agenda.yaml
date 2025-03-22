@@ -1,0 +1,60 @@
+agenda:
+  - day: Monday
+    name: Midday
+    start: 11:30
+    end: 12:30
+    color: red
+
+  - day: Tuesday
+    name: Midday
+    start: 11:30
+    end: 12:30
+    color: red
+
+  - day: Wednesday
+    name: Midday
+    start: 11:30
+    end: 12:30
+    color: red
+
+  - day: Thursday
+    name: Midday
+    start: 11:30
+    end: 12:30
+    color: red
+
+  - day: Friday
+    name: Nearly Weekend
+    start: 09:0
+    end: 11:30
+    color: darkgrey
+
+  - day: Friday
+    name: Midday
+    start: 11:30
+    end: 12:30
+    color: red
+
+  - day: Friday
+    name: The Weekend Starts
+    start: 16:30
+    end: 17:00
+    color: blue
+  
+  - day: Saturday
+    name: Flight Sim Day
+    start: 10:00
+    end: 11:30
+    color: green
+
+  - day: Saturday
+    name: Midday
+    start: 11:30
+    end: 12:30
+    color: red
+
+  - day: Sunday
+    name: Midday
+    start: 11:30
+    end: 12:30
+    color: red
