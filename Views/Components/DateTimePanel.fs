@@ -8,9 +8,15 @@ let dateTimePanel () =
     div [ _class "date-time-panel p-2 bg-light border-bottom" ] [
         div [ _class "d-flex justify-content-between align-items-center" ] [
             div [ _class "date-display h4 mb-0" ] [
-                button [ _id "activate" ] [ str "Activate" ]
-                str (DateTime.Now.ToString("ddd, MMM dd"))
+                button [
+                    _class "btn btn-link p-0 mb-2"
+                    attr "hx-get" "/api/config"
+                    attr "hx-target" "#config-box"
+                ] [
+                    str (DateTime.Now.ToString("ddd, MMM dd"))
+                ]                
             ]
+            ConfigView.closedView
             TimeDisplay.timeDisplay ()
         ]
     ]

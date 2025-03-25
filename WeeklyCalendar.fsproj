@@ -8,13 +8,14 @@
     
     
     <Compile Include="Domain/Event.fs" />
+    <Compile Include="Views/Components/ConfigView.fs" />
     <Compile Include="Views/Components/TimeDisplay.fs" />
     <Compile Include="Views/Components/DateTimePanel.fs" />
     <Compile Include="Views/Components/DailyAgenda.fs" />
     <Compile Include="Views/Components/PhotoFrame.fs" />
-    <Compile Include="Views/Components/StandbyVideo.fs" />
+    <Compile Include="Views/Components/StandbyVideo.fs" />    
     <Compile Include="Views/MainView.fs" />
-    <Compile Include="Handlers/MainHandler.fs" />
+    <Compile Include="Handlers\Handlers.fs" />
     <Compile Include="ConfigReader.fs" />
     <Compile Include="Program.fs" />
     <Content Include="Dockerfile" />

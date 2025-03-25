@@ -61,9 +61,11 @@ function handleVideo() {
     let _ = video.play();
 }
 
-document.querySelector("button#activate").addEventListener("click", () => {
-    handleVideo();
-    document.querySelector("button#activate").remove();
+document.addEventListener("click", (event) => {
+    if (event.target && event.target.id === "activate") {
+        handleVideo();
+        event.target.setAttribute("disabled", "disabled");
+    }
 });
 
 setInterval(processUpdates, 1000);

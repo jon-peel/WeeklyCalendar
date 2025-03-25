@@ -1,9 +1,8 @@
 open System
 open Microsoft.AspNetCore.Builder
 open Microsoft.Extensions.Hosting
-open Microsoft.Extensions.DependencyInjection
 open Giraffe
-open WeeklyCalendar.Handlers.MainHandler
+open WeeklyCalendar.Handlers
 
 let errorHandler (ex : Exception) (logger : Microsoft.Extensions.Logging.ILogger) =
     printfn "An unhandled exception has occurred while executing the request."
@@ -14,9 +13,7 @@ let errorHandler (ex : Exception) (logger : Microsoft.Extensions.Logging.ILogger
 let webApp config =
     choose [
         route "/" >=> mainHandler config
-        route "/api/photo" >=> 
-            fun next ctx -> 
-                htmlView (WeeklyCalendar.Views.Components.PhotoFrame.photoFrame ()) next ctx
+        subRoute "/api" apiHandler
     ]
 
 
