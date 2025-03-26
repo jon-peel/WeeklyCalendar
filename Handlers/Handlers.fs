@@ -5,9 +5,9 @@ open Giraffe
 open WeeklyCalendar.Views.Components
 open WeeklyCalendar.Views.MainView
 
-let mainHandler config: HttpHandler =
+let mainHandler getWeather config: HttpHandler =
     fun next ctx ->
-        htmlView (mainView config) next ctx
+        htmlView (mainView getWeather config) next ctx
 
 let apiHandler: HttpHandler =
     let handlePhoto: HttpHandler =

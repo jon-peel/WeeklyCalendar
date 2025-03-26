@@ -6,7 +6,7 @@ open WeeklyCalendar.Views.Components
 open WeeklyCalendar.Views.Components.DateTimePanel
 open WeeklyCalendar.Views.Components.DailyAgenda
 
-let mainView config =
+let mainView getWeather config =
     html [] [
         head [] [
             title [] [ str "Weekly Calendar" ]
@@ -38,7 +38,7 @@ let mainView config =
                         ]
                     ]
                     div [ _class "col-3 p-2 agenda-container" ] [
-                        dailyAgenda config
+                        dailyAgenda getWeather config
                     ]                    
                 ]                
             ]            

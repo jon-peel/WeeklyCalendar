@@ -21,17 +21,28 @@ body {
 
 .time-slot {
     position: absolute;
-    height: 60px;  /* Fixed height per hour */
+    height: 60px;
     font-size: 0.8em;
     color: #666;
     border-top: 1px solid #eee;
     width: 100%;
     padding-left: 5px;
+    align-items: start;
 }
 
 .time-slot.night {
     background-color: rgba(52, 58, 64, 0.15);  /* Bootstrap dark gray with transparency */
 }
+
+.time-slot-hour {
+    font-weight: bold;
+}
+
+.time-slot-weather {
+    font-size: 0.9em;
+    color: #666;
+}
+.time-slot-weather img { height: 3em; }
 
 .events-container {
     position: absolute;
@@ -46,7 +57,7 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    margin: 1px 5px;
+    margin: 1px 5px 1px 40px;
     padding: 4px;
     border-radius: 4px;
     opacity: 0.9;
@@ -148,3 +159,4 @@ body {
     object-fit: cover;
     object-position: center center;
 }
+

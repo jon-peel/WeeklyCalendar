@@ -2,6 +2,7 @@ module WeeklyCalendar.ConfigReader
 open FSharp.Configuration
 open WeeklyCalendar.Domain
 open System.IO
+open Microsoft.Extensions.Configuration
 
 type private AgendaConfig = YamlConfig<"agenda.yaml">
 
@@ -27,5 +28,10 @@ let private readAgenda () =
             End = event.``end``
         } ]
 
-let read () = 
-    { Events = readAgenda () }
+
+let private readWeatherApiKey (config: ConfigurationManager) =
+    config["WEATHER_API_KEY"]
+
+let read config = 
+    { Events = readAgenda ()
+      WeatherApiKey = readWeatherApiKey config }

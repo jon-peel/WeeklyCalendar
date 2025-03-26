@@ -17,6 +17,7 @@
     <Compile Include="Views/MainView.fs" />
     <Compile Include="Handlers\Handlers.fs" />
     <Compile Include="ConfigReader.fs" />
+    <Compile Include="WeatherApiService.fs" />
     <Compile Include="Program.fs" />
     <Content Include="Dockerfile" />
     <Content Include="agenda.yaml">
@@ -29,6 +30,7 @@
     <Content Include="docker-test-setup\photos\5807334-3704028219.jpg" />
     <Content Include="docker-test-setup\photos\bbpwv84muux31-3712334447.png" />
     <Content Include="docker-run.sh" />
+    <Content Include=".env" />
     <Content Update="wwwroot\css\app.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -56,6 +58,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="dotenv.net" Version="3.2.1" />
     <PackageReference Include="FSharp.Configuration" Version="2.0.0" />
     <PackageReference Include="Giraffe" Version="7.0.2" />
     <PackageReference Include="Giraffe.ViewEngine" Version="1.4.0" />

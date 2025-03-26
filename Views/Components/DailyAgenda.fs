@@ -2,26 +2,35 @@ module WeeklyCalendar.Views.Components.DailyAgenda
 
 open System
 open Giraffe.ViewEngine
-open YamlDotNet.Serialization
-open YamlDotNet.Serialization.NamingConventions
 open WeeklyCalendar.Domain
 
 let startAt = 0
 let endAt = 23
-let sunrise = 6
-let sunset = 18
 
-let private timeSlot hour =
+
+let private timeSlot (weather:WeatherResponse) hour =
     let pixelsPerHour = 60
     let top = (hour - startAt) * pixelsPerHour
-    let timeSlotClass = 
-        match hour with
-        | h when h < sunrise || h >= sunset -> "time-slot night"
+    let timeSlotClass =
+        weather.Forecast.ForecastDay
+        |> Seq.tryHead
+        |> function
+        | Some d when hour <= d.astro.SunriseHour || hour >= d.astro.SunsetHour -> "time-slot night"
         | _ -> "time-slot"
     div [ _class timeSlotClass 
           _style $"top: {top}px"
           _id $"hour-{hour}" ] [
-        str (sprintf "%02d:00" hour)
+        strong [] [ str $"{hour}:00" ]
+        div [ _class "time-slot-weather" ] 
+            (weather.Forecast.ForecastDay
+             |> Seq.collect (fun f -> f.hour)
+             |> Seq.filter (fun h -> h.HourTime.Hour = hour)
+             |> Seq.map (fun h ->  [ 
+                tag "img" [ _src h.Condition.Icon; _title h.Condition.Text ] []
+                str $" {h.TempC}°"
+                ])
+             |> Seq.tryHead
+             |> Option.defaultValue [])
     ]
 
 let private eventBlock (event: Event) =
@@ -65,7 +74,8 @@ let private currentTimeIndicator (time: TimeSpan) =
           _id "current-time-indicator"
           _style $"top: {top}px" ] []
 
-let dailyAgenda (config: Config) =
+let dailyAgenda (config: Config) (getWeather: GetWeather) =
+    let weather = getWeather "Sochi" |> Async.AwaitTask |> Async.RunSynchronously
     div [ _class "daily-agenda" ] [
         let date = DateTime.Now
         let day = date.DayOfWeek.ToString()
@@ -74,7 +84,7 @@ let dailyAgenda (config: Config) =
     
         div [ _class "time-grid" ] [
             for hour in startAt .. endAt do
-                timeSlot hour
+                timeSlot weather hour
         ]
         div [ _class "events-container" ] [
             for event in events do
