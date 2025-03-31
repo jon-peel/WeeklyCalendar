@@ -75,7 +75,7 @@ let private currentTimeIndicator (time: TimeSpan) =
           _style $"top: {top}px" ] []
 
 let dailyAgenda (config: Config) (getWeather: GetWeather) =
-    let weather = getWeather "Sochi" |> Async.AwaitTask |> Async.RunSynchronously
+    let weather = getWeather () |> Async.AwaitTask |> Async.RunSynchronously
     div [ _class "daily-agenda" ] [
         let date = DateTime.Now
         let day = date.DayOfWeek.ToString()

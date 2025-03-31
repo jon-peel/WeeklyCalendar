@@ -23,15 +23,17 @@ body {
     position: absolute;
     height: 60px;
     font-size: 0.8em;
-    color: #666;
+    color: #333;
     border-top: 1px solid #eee;
     width: 100%;
     padding-left: 5px;
     align-items: start;
+    background-color: rgba(108, 117, 125, 1); /* Slightly lighter gray */
 }
 
 .time-slot.night {
-    background-color: rgba(52, 58, 64, 0.15);  /* Bootstrap dark gray with transparency */
+    color: #666;
+    background-color: rgba(52, 58, 64, 0.50);  /* Bootstrap dark gray with transparency */
 }
 
 .time-slot-hour {
@@ -40,7 +42,7 @@ body {
 
 .time-slot-weather {
     font-size: 0.9em;
-    color: #666;
+    _olor: #333;
 }
 .time-slot-weather img { height: 3em; }
 
@@ -84,6 +86,7 @@ body {
     flex: 1;
     min-height: 0;
     overflow: hidden;
+    background: #000;
 }
 
 .agenda-container {
@@ -116,6 +119,8 @@ body {
 .event-block-yellow {
     background-color: #ffa000;  /* Darker yellow */
 }
+
+.card { border-color: #6668; }
 
 .card img {
     max-width: 100%;
@@ -158,5 +163,13 @@ body {
     min-height: 100%;
     object-fit: cover;
     object-position: center center;
+}
+
+.bg-dark .btn-link {
+    color: #fff;
+}
+
+.bg-dark .btn-link:hover {
+    color: #ccc;
 }
 

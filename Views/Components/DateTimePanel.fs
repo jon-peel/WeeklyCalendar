@@ -3,9 +3,19 @@ module WeeklyCalendar.Views.Components.DateTimePanel
 
 open Giraffe.ViewEngine
 open System
+open WeeklyCalendar.Domain
 
-let dateTimePanel () =
-    div [ _class "date-time-panel p-2 bg-light border-bottom" ] [
+let dateTimePanel (getWeather: GetWeather) =
+    let weather = getWeather () |> Async.AwaitTask |> Async.RunSynchronously
+    let night = 
+        weather.Forecast.ForecastDay
+        |> Seq.tryHead
+        |> function
+        | Some d when DateTime.Now.Hour < d.astro.SunriseHour || DateTime.Now.Hour >= d.astro.SunsetHour -> true
+        | _ -> false
+
+    div [ _id "date-time-panel"
+          _class (sprintf "date-time-panel p-2 border-bottom %s" (if night then "bg-dark text-light" else "bg-light")) ] [
         div [ _class "d-flex justify-content-between align-items-center" ] [
             div [ _class "date-display h4 mb-0" ] [
                 button [

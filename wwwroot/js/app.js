@@ -77,9 +77,9 @@ scrollToCurrentHourImmediate(now); // Initial scroll on page load
 setInterval(() => {
     console.log('Reloading');
     htmx.ajax('GET', '/api/photo', '#photo-frame')
+    htmx.ajax('GET', '/api/dateTime', '#date-time-panel')
     console.log('Realoading done');
 }, 60000);
-
 
 
 // Register Service Worker

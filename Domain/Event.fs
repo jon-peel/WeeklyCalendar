@@ -5,7 +5,7 @@ open System.Threading.Tasks
 
 type Event = { Day: string; Name: string; Start: TimeSpan; End: TimeSpan; Color: string }
 
-type GetWeather = string -> Task<WeatherResponse>
+type GetWeather = Unit -> Task<WeatherResponse>
 and WeatherResponse = {
     Current: Current
     Forecast: Forecast
@@ -38,4 +38,4 @@ and Hour = {
     Condition: Condition
 } with member t.HourTime = DateTime.Parse(t.time) 
 
-type Config = { Events: Event list; WeatherApiKey: string }
+type Config = { Location: string; Events: Event list; WeatherApiKey: string }
