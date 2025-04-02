@@ -33,7 +33,7 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker build \
-           -t ghcr.io/${{ env.IMAGE_NAME }}:latest \
-           -t ghcr.io/${{ env.IMAGE_NAME }}:${{ steps.build_number.outputs.build_number }} \
+           -t ghcr.io/jon-peel/my-agenda:latest \
+           -t ghcr.io/jon-peel/my-agenda:${{ steps.build_number.outputs.build_number }} \
            --push \
            .
