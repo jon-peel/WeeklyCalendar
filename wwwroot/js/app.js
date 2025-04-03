@@ -62,8 +62,7 @@ updateTimeIndicator(now);
 
 setInterval(() => {
     console.log('Reloading');
-    htmx.ajax('GET', '/api/photo', '#photo-frame')
-    htmx.ajax('GET', '/api/dateTime', '#date-time-panel')
+    htmx.ajax('GET', '/api/photo', '#photo-frame')    
     console.log('Realoading done');
 }, 5*60*1000);
 
