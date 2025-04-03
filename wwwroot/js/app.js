@@ -14,9 +14,23 @@ function scrollToCurrentHourImmediate(now) {
     }
 }
 
+function updateTimeIndicator(now) {
+    const startAt = 0; // Match the F# startAt value
+    const pixelsPerHour = 60;
+    const hours = now.getHours() - startAt;
+    const minutes = now.getMinutes();
+    const top = (hours + minutes / 60) * pixelsPerHour;
+    
+    const indicator = document.getElementById('current-time-indicator');
+    if (indicator) {
+        indicator.style.top = `${top}px`;
+    }
+}
+
 function processUpdates() {
     const now = new Date();
     scrollToCurrentHour(now);
+    updateTimeIndicator(now);
 }
 
 function handleVideo() {
@@ -42,7 +56,8 @@ document.addEventListener("click", (event) => {
 
 setInterval(processUpdates, 60*1000);
 const now = new Date();
-scrollToCurrentHourImmediate(now); // Initial scroll on page load
+scrollToCurrentHourImmediate(now);
+updateTimeIndicator(now);
 
 
 setInterval(() => {
