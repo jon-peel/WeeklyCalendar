@@ -5,6 +5,8 @@ services:
     ports:
       - "8080:80"
     restart: unless-stopped
+    environment:
+      WEATHER_API_KEY: bf5ee04ec56e451fba9182803252503
     volumes:
       - ./docker-test-setup/config:/config:ro
       - ./docker-test-setup/photos:/photos:ro

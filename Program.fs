@@ -25,6 +25,11 @@ let main args =
 
     let builder = WebApplication.CreateBuilder(args)
     let config = WeeklyCalendar.ConfigReader.read builder.Configuration    
+
+    printfn "...\n...\nUSING CODE: "
+    printf $"{config.WeatherApiKey}"
+    printf "\n...\n...\n"
+
     let getWeather () = WeatherApiService.getHourlyWeather config.WeatherApiKey config.Location
 
     builder.Services.AddGiraffe() |> ignore

@@ -27,12 +27,18 @@ let mainView config getWeather =
         body [] [
             div [ _class "container-fluid p-0 main-container" ] [
                 // Section A: Date Time Panel
-                dateTimePanel getWeather
+                // dateTimePanel getWeather
                 
+                ConfigView.closedView
+
                 // Section B & C: Main content
                 div [ _class "row m-0 content-row" ] [                    
                     div [ _class "col-9 p-2" ] [
-                        div [ _class "photo-container" ] [
+                        div [ 
+                            _class "photo-container"
+                            attr "hx-get" "/api/config"
+                            attr "hx-target" "#config-box"
+                         ] [
                             StandByVideo.view ()  // Behind
                             PhotoFrame.photoFrame ()  // In front
                         ]
