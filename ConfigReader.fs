@@ -3,6 +3,7 @@ open FSharp.Configuration
 open WeeklyCalendar.Domain
 open System.IO
 open Microsoft.Extensions.Configuration
+open System
 
 type private AgendaConfig = YamlConfig<"agenda.yaml">
 
@@ -20,20 +21,29 @@ let private readAgenda () =
     | None -> failwith "Could not find agenda.yaml in any of the expected locations"    
     ( config.location,
       [ for event in config.agenda do
-        yield { 
-            Day = event.day            
-            Name = event.name
-            Color = event.color
-            Start = event.start
-            End = event.``end``
-        }])
+            let a: Event =
+                { Day = event.day            
+                  Name = event.name
+                  Color = event.color
+                  Start = event.start
+                  End = event.``end`` }
+            yield a ],
+      [ for sched in config.schedule do
+            let a: ScheduledEvent = 
+                { Date = DateOnly.Parse sched.date
+                  Name = sched.name
+                  Color = sched.color
+                  Start = TimeOnly.FromTimeSpan sched.start
+                  End = TimeOnly.FromTimeSpan sched.``end`` }
+            yield a] )
 
 
 let private readWeatherApiKey (config: ConfigurationManager) =
     config["WEATHER_API_KEY"]
 
 let read config = 
-    let (location, agenda) = readAgenda ()
+    let (location, agenda, schedule) = readAgenda ()
     { Location = location
-      Events = agenda
+      Agenda = agenda
+      Schedule = schedule
       WeatherApiKey = readWeatherApiKey config }

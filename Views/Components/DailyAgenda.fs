@@ -61,7 +61,7 @@ let private eventBlock (event: Event) =
     div [ _class (String.concat " " classes)
           _style styles ] [
         div [ _class "event-name" ] [ 
-            str $"{event.Name} ({event.Start}-{event.End})" 
+            str $"{event.Name}" //" ({event.Start}-{event.End})" 
         ]
     ]
 
@@ -80,7 +80,19 @@ let dailyAgenda (config: Config) (getWeather: GetWeather) =
         let date = DateTime.Now
         let day = date.DayOfWeek.ToString()
         let currentTime = date.TimeOfDay
-        let events = config.Events |> Seq.where (fun e -> e.Day = day)    
+        let agenda = config.Agenda |> Seq.where (fun e -> e.Day = day)    
+        let schedule = config.Schedule |> Seq.where (fun e -> e.Date = DateOnly.FromDateTime date)
+        let events = 
+            schedule
+            |> Seq.map (fun e -> 
+                { Day = e.Date.Day.ToString()
+                  Name = e.Name
+                  Color = e.Color
+                  Start = e.Start.ToTimeSpan()
+                  End = e.End.ToTimeSpan() })
+            |> Seq.append agenda
+            |> Seq.sortBy _.Start
+            |> Seq.toList
     
         div [ _class "time-grid" ] [
             for hour in startAt .. endAt do

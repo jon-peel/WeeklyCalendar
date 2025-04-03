@@ -1,5 +1,13 @@
 location: Johannesburg
 
+schedule:
+  - date: 2025-04-03
+    name: Once Off
+    start: 20:00
+    end: 21:00
+    color: blue
+
+
 agenda:
   - day: Monday
     name: Midday

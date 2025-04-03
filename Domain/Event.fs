@@ -4,6 +4,7 @@ open System.Text.Json.Serialization
 open System.Threading.Tasks
 
 type Event = { Day: string; Name: string; Start: TimeSpan; End: TimeSpan; Color: string }
+type ScheduledEvent = { Date: DateOnly; Name: string; Start: TimeOnly; End: TimeOnly; Color: string }
 
 type GetWeather = Unit -> Task<WeatherResponse>
 and WeatherResponse = {
@@ -38,4 +39,4 @@ and Hour = {
     Condition: Condition
 } with member t.HourTime = DateTime.Parse(t.time) 
 
-type Config = { Location: string; Events: Event list; WeatherApiKey: string }
+type Config = { Location: string; Agenda: Event list; Schedule: ScheduledEvent list; WeatherApiKey: string }
