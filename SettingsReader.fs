@@ -1,11 +1,13 @@
-module WeeklyCalendar.ConfigReader
+module WeeklyCalendar.SettingsReader
 open FSharp.Configuration
+open Microsoft.FSharp.Control
 open WeeklyCalendar.Domain
 open System.IO
 open Microsoft.Extensions.Configuration
 open System
 
 type private AgendaConfig = YamlConfig<"agenda.yaml">
+type Results = { Location: string; Agenda: Event list; Schedule: ScheduledEvent list; WeatherApiKey: string }
 
 let private tryFindConfigFile () =
     let paths = [

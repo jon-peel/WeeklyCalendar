@@ -5,16 +5,16 @@ open Giraffe
 open WeeklyCalendar.Views.Components
 open WeeklyCalendar.Views.MainView
 
-let mainHandler config getWeather: HttpHandler =
+let mainHandler env: HttpHandler =
     fun next ctx ->
-        htmlView (mainView config getWeather) next ctx
+        htmlView (mainView env) next ctx
 
-let apiHandler getWeather: HttpHandler =
+let apiHandler env: HttpHandler =
     let handlePhoto: HttpHandler =
         fun next ctx -> htmlView (PhotoFrame.photoFrame ()) next ctx
 
     let handleDateTime: HttpHandler = 
-        fun next ctx -> htmlView (DateTimePanel.dateTimePanel getWeather) next ctx
+        fun next ctx -> htmlView (DateTimePanel.dateTimePanel env) next ctx
 
     choose [
         route "/photo" >=> handlePhoto

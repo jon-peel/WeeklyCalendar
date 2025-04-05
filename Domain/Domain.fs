@@ -39,4 +39,11 @@ and Hour = {
     Condition: Condition
 } with member t.HourTime = DateTime.Parse(t.time) 
 
-type Config = { Location: string; Agenda: Event list; Schedule: ScheduledEvent list; WeatherApiKey: string }
+type ISettings =
+    abstract member Location: string
+    abstract member Agenda: Event list
+    abstract member Schedule: ScheduledEvent list
+    abstract member WeatherApiKey: string
+   
+type IGetWeather =
+    abstract member GetWeather: GetWeather

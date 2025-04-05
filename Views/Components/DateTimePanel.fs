@@ -5,8 +5,8 @@ open Giraffe.ViewEngine
 open System
 open WeeklyCalendar.Domain
 
-let dateTimePanel (getWeather: GetWeather) =
-    let weather = getWeather () |> Async.AwaitTask |> Async.RunSynchronously
+let dateTimePanel (env: #IGetWeather) =
+    let weather = env.GetWeather () |> Async.AwaitTask |> Async.RunSynchronously
     let night = 
         weather.Forecast.ForecastDay
         |> Seq.tryHead

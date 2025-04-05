@@ -74,14 +74,14 @@ let private currentTimeIndicator (time: TimeSpan) =
           _id "current-time-indicator"
           _style $"top: {top}px" ] []
 
-let dailyAgenda (config: Config) (getWeather: GetWeather) =
-    let weather = getWeather () |> Async.AwaitTask |> Async.RunSynchronously
+let dailyAgenda (env: #ISettings & #IGetWeather) =
+    let weather = env.GetWeather () |> Async.AwaitTask |> Async.RunSynchronously
     div [ _class "daily-agenda" ] [
         let date = DateTime.Now
         let day = date.DayOfWeek.ToString()
         let currentTime = date.TimeOfDay
-        let agenda = config.Agenda |> Seq.where (fun e -> e.Day = day)    
-        let schedule = config.Schedule |> Seq.where (fun e -> e.Date = DateOnly.FromDateTime date)
+        let agenda = env.Agenda |> Seq.where (fun e -> e.Day = day)    
+        let schedule = env.Schedule |> Seq.where (fun e -> e.Date = DateOnly.FromDateTime date)
         let events = 
             schedule
             |> Seq.map (fun e -> 

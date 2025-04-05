@@ -12,10 +12,10 @@ let errorHandler (ex : Exception) (logger : Microsoft.Extensions.Logging.ILogger
     //logger.Log(LogLevel.Error,  "An unhandled exception has occurred while executing the request.")
     clearResponse >=> setStatusCode 500 >=> text ex.Message
 
-let webApp  config getWeather =
+let webApp  env =
     choose [
-        route "/" >=> mainHandler config getWeather
-        subRoute "/api" (apiHandler getWeather)
+        route "/" >=> mainHandler env
+        subRoute "/api" (apiHandler env)
     ]
 
 
@@ -24,9 +24,8 @@ let main args =
     DotEnv.Load()
 
     let builder = WebApplication.CreateBuilder(args)
-    let config = WeeklyCalendar.ConfigReader.read builder.Configuration    
-    let getWeather () = WeatherApiService.getHourlyWeather config.WeatherApiKey config.Location
-
+    let env = Environment.build builder.Configuration
+    
     builder.Services.AddGiraffe() |> ignore
 
     let app = builder.Build()
@@ -35,7 +34,7 @@ let main args =
         app.UseDeveloperExceptionPage() |> ignore
 
     app.UseStaticFiles() |> ignore
-    app.UseGiraffe (webApp config getWeather)
+    app.UseGiraffe (webApp env)
     app.UseGiraffeErrorHandler(errorHandler) |> ignore
 
     app.Run()
