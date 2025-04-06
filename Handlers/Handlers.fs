@@ -13,12 +13,8 @@ let apiHandler env: HttpHandler =
     let handlePhoto: HttpHandler =
         fun next ctx -> htmlView (PhotoFrame.photoFrame ()) next ctx
 
-    let handleDateTime: HttpHandler = 
-        fun next ctx -> htmlView (DateTimePanel.dateTimePanel env) next ctx
-
     choose [
         route "/photo" >=> handlePhoto
-        route "/dateTime" >=> handleDateTime
         route "/config" >=> (fun next ctx -> (htmlView (ConfigView.view ()) next ctx))
         route "/config/close" >=> (fun next ctx -> (htmlView ConfigView.closedView next ctx))
     ]

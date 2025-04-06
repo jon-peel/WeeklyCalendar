@@ -3,7 +3,6 @@ module WeeklyCalendar.Views.MainView
 
 open Giraffe.ViewEngine
 open WeeklyCalendar.Views.Components
-open WeeklyCalendar.Views.Components.DateTimePanel
 open WeeklyCalendar.Views.Components.DailyAgenda
 
 let mainView env =

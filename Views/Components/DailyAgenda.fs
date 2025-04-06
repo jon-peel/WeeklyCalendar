@@ -1,6 +1,7 @@
 module WeeklyCalendar.Views.Components.DailyAgenda
 
 open System
+open FSharpPlus
 open Giraffe.ViewEngine
 open WeeklyCalendar.Domain
 
@@ -8,29 +9,25 @@ let startAt = 0
 let endAt = 23
 
 
-let private timeSlot (weather:WeatherResponse) hour =
+let private timeSlot (weather: WeatherForecast option) hour =
     let pixelsPerHour = 60
     let top = (hour - startAt) * pixelsPerHour
     let timeSlotClass =
-        weather.Forecast.ForecastDay
-        |> Seq.tryHead
-        |> function
-        | Some d when hour <= d.astro.SunriseHour || hour >= d.astro.SunsetHour -> "time-slot night"
-        | _ -> "time-slot"
+        weather
+        |>> (fun w -> w.Sunrise.Hour >= hour || w.Sunset.Hour <= hour)
+        |> (function Some true -> "time-slot night" | _ -> "time-slot")
+    let condition =
+        weather
+        |>> _.Hourly
+        >>= Seq.tryFind (fun h -> h.Hour.Hour = hour)
+        |>> fun w -> [ tag "img" [ _src w.Condition.Icon; _title w.Condition.Description ] []
+                       str $"{w.Temp}°" ]
+        |> Option.defaultValue []
     div [ _class timeSlotClass 
           _style $"top: {top}px"
           _id $"hour-{hour}" ] [
         strong [] [ str $"{hour}:00" ]
-        div [ _class "time-slot-weather" ] 
-            (weather.Forecast.ForecastDay
-             |> Seq.collect (fun f -> f.hour)
-             |> Seq.filter (fun h -> h.HourTime.Hour = hour)
-             |> Seq.map (fun h ->  [ 
-                tag "img" [ _src h.Condition.Icon; _title h.Condition.Text ] []
-                str $" {h.TempC}°"
-                ])
-             |> Seq.tryHead
-             |> Option.defaultValue [])
+        div [ _class "time-slot-weather" ] condition
     ]
 
 let private eventBlock (event: Event) =
@@ -75,7 +72,7 @@ let private currentTimeIndicator (time: TimeSpan) =
           _style $"top: {top}px" ] []
 
 let dailyAgenda (env: #ISettings & #IGetWeather) =
-    let weather = env.GetWeather () |> Async.AwaitTask |> Async.RunSynchronously
+    let weather = env.GetWeather () 
     div [ _class "daily-agenda" ] [
         let date = DateTime.Now
         let day = date.DayOfWeek.ToString()

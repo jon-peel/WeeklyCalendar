@@ -10,14 +10,14 @@
     <Compile Include="Domain\Domain.fs" />
     <Compile Include="Views/Components/ConfigView.fs" />
     <Compile Include="Views/Components/TimeDisplay.fs" />
-    <Compile Include="Views/Components/DateTimePanel.fs" />
     <Compile Include="Views/Components/DailyAgenda.fs" />
     <Compile Include="Views/Components/PhotoFrame.fs" />
     <Compile Include="Views/Components/StandbyVideo.fs" />    
     <Compile Include="Views/MainView.fs" />
-    <Compile Include="Handlers\Handlers.fs" />
+    <Compile Include="Handlers/Handlers.fs" />
+    <Compile Include="Services/WeatherApiService.fs" />
+    
     <Compile Include="SettingsReader.fs" />
-    <Compile Include="WeatherApiService.fs" />
     <Compile Include="Environment.fs" />
     <Compile Include="Program.fs" />
     <Content Include="Dockerfile" />
@@ -32,6 +32,9 @@
     <Content Include="docker-test-setup\photos\bbpwv84muux31-3712334447.png" />
     <Content Include="docker-run.sh" />
     <Content Include=".env" />
+    
+    
+    
     <Content Update="wwwroot\css\app.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -61,6 +64,9 @@
   <ItemGroup>
     <PackageReference Include="dotenv.net" Version="3.2.1" />
     <PackageReference Include="FSharp.Configuration" Version="2.0.0" />
+    <PackageReference Include="FSharp.Data" Version="6.6.0" />
+    <PackageReference Include="FSharpPlus" Version="1.7.0" />
+    <PackageReference Include="FsToolkit.ErrorHandling" Version="4.18.0" />
     <PackageReference Include="Giraffe" Version="7.0.2" />
     <PackageReference Include="Giraffe.ViewEngine" Version="1.4.0" />
     

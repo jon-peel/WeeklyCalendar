@@ -6,31 +6,21 @@ open System.Threading.Tasks
 type Event = { Day: string; Name: string; Start: TimeSpan; End: TimeSpan; Color: string }
 type ScheduledEvent = { Date: DateOnly; Name: string; Start: TimeOnly; End: TimeOnly; Color: string }
 
-type GetWeather = Unit -> Task<WeatherResponse>
-and WeatherResponse = {
-    Current: Current
-    Forecast: Forecast
+[<Measure>]
+type C
+
+type GetWeather = Unit -> WeatherForecast option
+and WeatherForecast = {
+    Sunrise: TimeOnly
+    Sunset: TimeOnly
+    Hourly: HourlyForecast list
 }
-and Current = {
-    [<JsonPropertyName("temp_c")>] TempC: float
+and HourlyForecast = {
+    Hour: TimeOnly
+    Temp: float<C>
     Condition: Condition
 }
-and Condition = {
-    Text: string
-    Icon: string
-}
-and Forecast = { 
-    ForecastDay: ForecastDay list 
-}
-and ForecastDay = {
-    astro: Astro
-    hour: Hour list    
-}
-and Astro = {
-    Sunrise: string
-    Sunset: string
-} with member t.SunriseHour = DateTime.Parse(t.Sunrise).Hour
-       member t.SunsetHour = DateTime.Parse(t.Sunset).Hour
+and Condition = { Icon: string; Description: string; }
 
 
 and Hour = {

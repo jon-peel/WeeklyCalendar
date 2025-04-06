@@ -17,8 +17,7 @@ type Environment =
 module Environment =
     let build configuration =
          let settings = SettingsReader.read configuration    
-         let getWeather () = WeatherApiService.getHourlyWeather settings.WeatherApiKey settings.Location
-         
-         { GetWeather = getWeather
+         let getWeather () = WeatherApiService.getHourlyWeather settings.WeatherApiKey settings.Location |> Result.toOption         
+         { GetWeather = getWeather 
            Settings = settings }
 
